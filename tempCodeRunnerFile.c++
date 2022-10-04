@@ -2,30 +2,34 @@
 
 using namespace std;
 
-void hanoi(int n, int a, int b, int c);
+int fastCompute(int x, int n);
 
-int stack[11];
-int sp = 0;
+int p(int x, int n);
 
 int main()
 {
-    int numOfCase;
-    cin >> numOfCase;
+    int numCases;
+    cin >> numCases;
 
-    for (int i = 0; i < numOfCase; i++)
+    for (int i = 0; i < numCases; i++)
     {
-        int numOfDisks;
-        cin >> numOfDisks;
-        hanoi(numOfDisks, 1, 2, 3);
+        int x, n;
+        cin >> x >> n;
+
+        cout << fastCompute(x, n) << '\n';
     }
 }
 
-void hanoi(int n, int a, int b, int c)
+int fastCompute(int x, int n)
 {
-    if (n > 0)
+    if (n == 0)
+        return 1;
+    else if (n % 2 == 0)
     {
-        hanoi(n - 1, a, c, b);
-        cout << n << ": " << a << " -> " << c << '\n';
-        hanoi(n - 1, b, a, c);
+        return (fastCompute(x, n / 2) * fastCompute(x, n / 2)) % 1000;
+    }
+    else
+    {
+        return (x * fastCompute(x, (n - 1) / 2) * fastCompute(x, (n - 1) / 2)) % 1000;
     }
 }
