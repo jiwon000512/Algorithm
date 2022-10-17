@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <iostream>
 
 using namespace std;
@@ -65,3 +66,6 @@ int main()
         cout << mcssKadane(a, n, startIndex, endIndex) << ' ' << startIndex << ' ' << endIndex << '\n';
     }
 }
+=======
+else
+>>>>>>> bfd266e (20221017)
