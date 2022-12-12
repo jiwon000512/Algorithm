@@ -5,7 +5,7 @@ using namespace std;
 #define MAX_SIZE 16
 
 int n;
-int cases = 0;
+bool alreadyPrinted = false;
 int col[MAX_SIZE] = {
     0,
 };
@@ -26,22 +26,28 @@ void printNqueens(int *col)
 {
     for (int i = 0; i < n; i++)
     {
-        cout << col[i] + 1 << ' ';
+        cout << col[i]+1 << ' ';
     }
 }
 
 void nQueen(int row)
 {
+    if(alreadyPrinted)
+    {
+        return;
+    }
     if (row == n)
     {
-        cases++;
+        printNqueens(col);
+        alreadyPrinted = true;
+        return;
     }
     else
     {
         for (int i = 0; i < n; i++)
         {
             col[row] = i;
-            if (isPromising(row))
+            if(isPromising(row))
                 nQueen(row + 1);
         }
     }
@@ -49,13 +55,20 @@ void nQueen(int row)
 
 int main()
 {
+    int t;
+    cin >> t;
 
-    cin >> n;
-    nQueen(0);
-    cout << cases << '\n';
-
-    for (int j = 0; j < n; j++)
+    for (int i = 0; i < t; i++)
     {
-        col[j] = 0;
+        cin >> n;
+        nQueen(0);
+        cout << '\n';
+
+
+        for(int j=0; j<n; j++)
+        {
+            col[j] = 0;
+        }
+        alreadyPrinted = false;
     }
 }
