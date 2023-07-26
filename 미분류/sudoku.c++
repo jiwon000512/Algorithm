@@ -58,6 +58,7 @@ void sudoku(int x, int y)
             printSudoku();
             alreadyPrinted = true;
         }
+        return;
         
     }
 
@@ -73,7 +74,7 @@ void sudoku(int x, int y)
         {
             board[x][y] = i;
             sudoku(x, y + 1);
-            board[x][y] = 0;
+            //board[x][y] = 0;
         }
     }
 }
